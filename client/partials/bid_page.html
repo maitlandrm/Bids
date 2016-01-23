@@ -1,0 +1,71 @@
+<style type="text/css">
+div{
+	display: inline-block;
+	margin: 1%;
+}
+input{
+	display: block;
+	margin: 1%
+
+}
+h1{
+	display: inline-block;
+}
+.logout{
+	display: inline-block;
+}
+.header{
+	display: block;
+}
+.bidding{
+	width: 99%;
+}
+.error{
+	color: red;
+}
+
+</style>
+
+<div class = "wrapper">
+	<div class = "header">
+	<h1>Bid Now!</h1>
+
+	<button class = "logout" ng-click = "bidsCtrl.destroy()">Logout</button>
+</div>
+	<div class = "bidding">
+		<div>
+
+			<img src = "./../static/images/nutella.jpg" width = "300px" >
+			<input type = "number" min = "0" ng-model = "bidsCtrl.new_nutella_bid.amount" required>
+			<button ng-click = "bidsCtrl.nutella_create()">Bid</button>
+			
+		</div>
+		<div>
+			<img src="./../static/images/bunny.jpg" width = "300px" ng-model = "bidsCtrl.new_bid.product">
+			<input type = "number" min = "0" ng-model = "bidsCtrl.new_bunny_bid.amount" required>
+			<button ng-click = "bidsCtrl.bunny_create()">Bid</button>
+		</div>
+		<div>
+			<img src="./../static/images/puppies2.jpg" width = "300px" ng-model = "bidsCtrl.new_bid.product">
+			<input type = "number" min = "0" ng-model = "bidsCtrl.new_puppy_bid.amount" required>
+			<button ng-click = "bidsCtrl.puppy_create()">Bid</button>
+		</div>
+		<p class = "error">{{bidsCtrl.error}}</p>
+	</div>
+	<div>
+		<h4>Current Bids:</h4>
+		<p ng-repeat = "n in bidsCtrl.nutella | orderBy: '-amount' | filter: filter_name_nutella">nutella: {{n.user}}: ${{n.amount}} </p>
+		<input type = "text" ng-model = "filter_name_nutella" />
+	</div>
+	<div>
+		<p ng-repeat = "b in bidsCtrl.bunny | orderBy: '-amount' | filter: filter_name_bunny">bunny: {{b.user}}: ${{b.amount}}</p>
+		<input type = "text" ng-model = "filter_name_bunny" />
+	</div>
+	<div>
+		<p ng-repeat = "p in bidsCtrl.puppy | orderBy: '-amount' | filter: filter_name_puppy">puppies: {{p.user}}: ${{p.amount}}</p>
+		<input type = "text" ng-model = "filter_name_puppy" />
+	</div>
+
+	<button ng-click = "bidsCtrl.end_bid()">End Bid</button>
+
+</div>

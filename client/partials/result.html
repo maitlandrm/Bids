@@ -1,0 +1,15 @@
+<div>
+	<h1>{{bidsCtrl.user}} ended the Bid.</h1>
+	<button class = "logout" ng-click = "bidsCtrl.destroy()">Logout</button>
+	<h3>Highest Bidder per Product</h3>
+
+	<img src = "./../static/images/nutella.jpg" width = "300px" >
+	<p ng-repeat = "n in bidsCtrl.nutella | orderBy: '-amount' | limitTo: 1">nutella: {{n.user}}: ${{n.amount}} </p>
+	<img src="./../static/images/bunny.jpg" width = "300px" ng-model = "bidsCtrl.new_bid.product">
+	<p ng-repeat = "b in bidsCtrl.bunny | orderBy: '-amount'| limitTo: 1">bunny: {{b.user}}: ${{b.amount}} </p>
+	<img src="./../static/images/puppies2.jpg" width = "300px" ng-model = "bidsCtrl.new_bid.product">
+	<p ng-repeat = "p in bidsCtrl.puppy | orderBy: '-amount' | limitTo: 1">puppy: {{p.user}}: ${{p.amount}} </p>
+
+
+	<button ng-click = "bidsCtrl.delete()" >Start Bid</button>
+</div>
